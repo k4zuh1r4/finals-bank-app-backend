@@ -5,6 +5,8 @@ import { UsersService } from '../../services/users/users.service';
 import GetAllUserService from '../../use-cases/GetAllUsers';
 import CreateUserService from '../../use-cases/CreateUser';
 import GetUserByIDService from '../../use-cases/GetUserByID';
+import UpdateUserByIDService from '../../use-cases/UpdateUserByID';
+import DeleteUserByIDService from '../../use-cases/DeleteUserByID';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
@@ -13,6 +15,8 @@ import GetUserByIDService from '../../use-cases/GetUserByID';
     GetAllUserService,
     CreateUserService,
     GetUserByIDService,
+    UpdateUserByIDService,
+    DeleteUserByIDService,
   ],
   exports: [UsersService],
 

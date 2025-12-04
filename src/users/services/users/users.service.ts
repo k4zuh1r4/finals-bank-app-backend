@@ -4,6 +4,8 @@ import GetAllUserService from '../../use-cases/GetAllUsers';
 import CreateUserService from '../../use-cases/CreateUser';
 import GetUserByIDService from '../../use-cases/GetUserByID';
 import { Response } from 'express';
+import UpdateUserByIDService from '../../use-cases/UpdateUserByID';
+import DeleteUserByIDService from '../../use-cases/DeleteUserByID';
 
 @Injectable()
 export class UsersService implements IUsersService {
@@ -12,6 +14,8 @@ export class UsersService implements IUsersService {
         private readonly getAllUserService: GetAllUserService,
         private readonly createUserService: CreateUserService,
         private readonly getUserByIDService: GetUserByIDService,
+        private readonly updateUserByID: UpdateUserByIDService,
+        private readonly deleteUserByID: DeleteUserByIDService,
     ) {}
     async getAllUsers(res: Response): Promise<any> {
         try {
@@ -37,17 +41,21 @@ export class UsersService implements IUsersService {
             throw error;
          }
     }
-    async updateUser(id: any, patchData: any): Promise<void> {
-         console.log({
-            id, patchData,
-            message: "updateUser"
-         })
+    async updateUser(id: any, patchData: any, res: Response): Promise<void> {
+         try {
+            this.logger.debug("Service level - Updating user by ID.");
+            await this.updateUserByID.execute(id, patchData, res);
+         }
+         catch (error) {
+            throw error;
+         }
     }
-    async deleteUser(id: any): Promise<any> {
-        return(
-            {
-                id, 
-                message: "getUserByID"
-            })
+    async deleteUser(id: any, res: Response): Promise<void> {
+        try {
+            this.logger.debug("Service level - Delete user by ID.");
+            await this.deleteUserByID.execute(id, res);
+        } catch (error) {
+            throw error;
+        }
     }
 }

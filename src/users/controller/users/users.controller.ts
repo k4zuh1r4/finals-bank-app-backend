@@ -21,11 +21,11 @@ export class UsersController {
         return await this.userServices.getUserByID(id, res);
     }
     @Patch(':id')
-    async updateUser(@Param('id') id: any, @Body() patchData: any) {
-        return await this.userServices.updateUser(id, patchData);
+    async updateUser(@Param('id') id: any, @Body() patchData: any, @Res() res: Response) {
+        return await this.userServices.updateUser(id, patchData, res);
     }
     @Delete(':id')
     async deleteUser(@Param('id') id: any, @Res() res: Response ) {
-        return await this.userServices.deleteUser(id);
+        return await this.userServices.deleteUser(id, res);
     }
 }
