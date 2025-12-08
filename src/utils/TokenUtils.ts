@@ -7,17 +7,17 @@ export default class TokenUtils {
     constructor(
         private readonly configService: ConfigService
     ) {}
-    async signToken(id: string) {
+    async signToken(id: string, role: string) {
         const secret = this.configService.get<string>('JWT_SECRET');
         if (!secret) {
             throw new Error('JWT_SECRET is not defined');
         }
-        return jwt.sign({id}, secret, {
+        return jwt.sign({ id, role }, secret, {
             expiresIn: '1h'
         });
     }
     async createSendToken(user, req: Request, res: Response) {
-        const token = await this.signToken(user.id)
+        const token = await this.signToken(user.id, user.role);
         res.cookie('jwt', token, {
             httpOnly: true,
             expires: new Date(Date.now() + 1*24*60*60*1000),

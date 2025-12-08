@@ -30,7 +30,33 @@ export class WalletController {
             throw error;
         }
     }
-    @Get('/:id')
+    @Post('deposit')
+    async depositByID(@Body() depositData:any, req: Request, res: Response): Promise<any> {
+        try {
+            return await this.walletService.depositByID(depositData, req, res);
+        } catch (error) {
+            throw error;
+        }
+    }
+    @Post('withdraw')
+    async withdrawByID(withdrawData: any, req: Request, res: Response): Promise<any> {
+        try {
+            return await this.walletService.withdrawByID(withdrawData, req, res);
+        } catch (error) {
+            throw error;   
+        }
+    }
+    @UseGuards(AuthGuard)
+    @Get('user')
+    async getWalletByUserID(@Req() req: Request, @Res() res: Response): Promise<any> {
+        try {
+            return await this.walletService.getWalletByUserID(req, res);
+        } catch (error) {
+            throw error;
+        }
+    }
+    @UseGuards(AuthGuard)
+    @Get(':id')
     async getWalletByID(@Param('id') id: any , @Req() req: Request, @Res() res: Response): Promise<any> {
         try {
             return await this.walletService.getWalletByID(id, req, res);
@@ -50,30 +76,6 @@ export class WalletController {
     async deleteWalletByID(@Param('id') id: any, @Req() req: Request, @Res() res: Response): Promise<any> {
         try {
             return await this.walletService.deleteWalletByID(id, req, res);
-        } catch (error) {
-            throw error;
-        }
-    }
-    @Post('deposit')
-    async depositByID(@Body() depositData:any, req: Request, res: Response): Promise<any> {
-        try {
-            return await this.walletService.depositByID(depositData, req, res);
-        } catch (error) {
-            throw error;
-        }
-    }
-    @Post('withdraw')
-    async withdrawByID(withdrawData: any, req: Request, res: Response): Promise<any> {
-        try {
-            return await this.walletService.withdrawByID(withdrawData, req, res);
-        } catch (error) {
-            throw error;   
-        }
-    }
-    @Get('user/:id')
-    async getWalletByUserID(@Param('id') id: any, @Req() req: Request, @Res() res: Response): Promise<any> {
-        try {
-            return await this.walletService.getWalletByUserID(id, req, res);
         } catch (error) {
             throw error;
         }

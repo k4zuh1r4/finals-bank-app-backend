@@ -21,7 +21,7 @@ export default class LoginUser {
             const user = await this.userRepository.findOne(
                 {
                     where: {email: email},
-                    select: ['id', 'email','password']
+                    select: ['id', 'email','password', 'role']
                 });
             if (!user) {
                 return res.status(400).json({

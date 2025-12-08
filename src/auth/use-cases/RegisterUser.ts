@@ -36,7 +36,7 @@ export default class RegisterUser {
                 name,
                 email,
                 password,
-                passwordConfirm
+                passwordConfirm,
             })
             await this.userRepository.save(user)
             const token = await this.tokenUtils.createSendToken(user, req, res);

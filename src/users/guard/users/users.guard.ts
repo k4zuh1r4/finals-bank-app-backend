@@ -31,6 +31,7 @@ export class UserGuard implements CanActivate {
       }
          const decoded = jwt.verify(token, jwtSecret);
          req.user = decoded
+         console.log(req.user.role);
          if (!req.user || req.user.role !== 'admin') {
           throw new ForbiddenException('Admins only');
          }

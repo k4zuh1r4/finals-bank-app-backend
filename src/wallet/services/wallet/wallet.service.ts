@@ -4,6 +4,8 @@ import { Request, Response } from 'express';
 import GetAllWalletsService from '../../use-case/GetAllWallets';
 import CreateWalletService from '../../use-case/CreateWallet';
 import { WalletDTO } from '../../dto/wallet.dto';
+import GetWalletByIDService from '../../use-case/GetWalletByID';
+import GetWalletByUserIDService from '../../use-case/GetWalletByUserID';
 
 @Injectable()
 export class WalletService implements IWalletService {
@@ -11,11 +13,13 @@ export class WalletService implements IWalletService {
     constructor(
         private readonly getAllWalletService: GetAllWalletsService,
         private readonly createWalletService: CreateWalletService,
+        private readonly getWalletByIDService: GetWalletByIDService,
+        private readonly getWalletByUserIDService: GetWalletByUserIDService
     ) {
     }
     async getAllWallets(req: Request, res: Response): Promise<any> {
         try{
-        return await this.getAllWalletService.execute(req, res);
+            return await this.getAllWalletService.execute(req, res);
         } catch (error) {
             throw error;
         }
@@ -27,8 +31,12 @@ export class WalletService implements IWalletService {
             throw error;
         }
     }
-    async getWalletByUserID(id: any, req: Request, res: Response): Promise<any> {
-        throw new Error('Method not implemented.');
+    async getWalletByUserID(req: Request, res: Response): Promise<any> {
+        try {
+            return await this.getWalletByUserIDService.execute(req, res);
+        } catch (error) {
+            throw error;
+        }
     }
     async updateWalletByID(id: any, updateData: any, req: Request, res: Response): Promise<any> {
         throw new Error('Method not implemented.');
@@ -37,7 +45,11 @@ export class WalletService implements IWalletService {
         throw new Error('Method not implemented.');
     }
     async getWalletByID(id: any, req: Request, res: Response): Promise<any> {
-        throw new Error('Method not implemented.');
+        try {
+            return await this.getWalletByIDService.execute(id, req, res);
+        } catch (error) {
+            throw error;
+        }
     }
     async depositByID(depositData: any, req: Request, res: Response): Promise<any> {
         throw new Error('Method not implemented.');
