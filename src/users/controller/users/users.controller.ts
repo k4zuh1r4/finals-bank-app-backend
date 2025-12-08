@@ -17,22 +17,22 @@ export class UsersController {
     }
     @UseGuards(UserGuard)
     @Post()
-    async createUser(@Body() userData: any, @Res() res: Response){
+    async createUser(@Body() userData: any, @Res() res: Response) {
         return await this.userServices.createUser(userData, res);
     }
-    @UseGuards(UserGuard)
+    @UseGuards(AuthGuard)
     @Get(':id')
-    async getUserByID(@Param('id') id: any, @Res() res: Response) {
-        return await this.userServices.getUserByID(id, res);
+    async getUserByID(@Param('id') id: any, @Req() req: Request, @Res() res: Response) {
+        return await this.userServices.getUserByID(id, req, res);
     }
-    @UseGuards(UserGuard)
+    @UseGuards(AuthGuard)
     @Patch(':id')
-    async updateUser(@Param('id') id: any, @Body() patchData: any, @Res() res: Response) {
-        return await this.userServices.updateUser(id, patchData, res);
+    async updateUser(@Param('id') id: any, @Body() patchData: any, @Req() req: Request, @Res() res: Response) {
+        return await this.userServices.updateUser(id, patchData, req, res);
     }
-    @UseGuards(UserGuard)
+    @UseGuards(AuthGuard)
     @Delete(':id')
-    async deleteUser(@Param('id') id: any, @Res() res: Response ) {
-        return await this.userServices.deleteUser(id, res);
+    async deleteUser(@Param('id') id: any, @Req() req: Request, @Res() res: Response ) {
+        return await this.userServices.deleteUser(id, req, res);
     }
 }

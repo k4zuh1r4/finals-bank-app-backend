@@ -7,32 +7,24 @@ export class User {
     ) {}
     @PrimaryGeneratedColumn('uuid')
     id: string
-
     @Column({ nullable: false })
     name: string
-
     @Column({ nullable: false, unique: true })
     email: string
-
     @Column({
         type: 'enum',
         enum: ['user', 'admin'],
         default: 'user'
     })
     role: 'user' | 'admin' 
-
     @Column({ nullable: false, select: false })
     password: string
-
     @Column({ nullable: true, select: false })
     passwordConfirm: string
-
     @Column({ type: 'timestamp', nullable: true })
     passwordChangedAt: Date | null | undefined
-
     @Column({ nullable: true })
     passwordResetToken: string
-
     @Column({ type: 'timestamp', nullable: true })
     passwordResetExpires: Date | null | undefined
     @Column({ default: true, select: false })

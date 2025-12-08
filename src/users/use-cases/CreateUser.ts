@@ -18,8 +18,8 @@ export default class CreateUserService {
             const save = await this.userRepository.save(user);
             return res.status(201).json({message: "Succeed.", save})
         } catch (error) {
-            this.logger.debug(`Error creating user: ${error}`);
-            throw res.status(400).json({message: "Failed to create user. Email has already been registered or incomplete data.", error})
+            this.logger.debug("Internal server error.");
+            throw res.status(500).json({message: "Internal server error.", error})
         }
     }
 }

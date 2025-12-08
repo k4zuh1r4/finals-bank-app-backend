@@ -2,7 +2,7 @@ import { Logger } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "../entities/user.entity";
 import { Repository } from "typeorm";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 export default class DeleteUserByIDService {
     private readonly logger = new Logger(DeleteUserByIDService.name)
@@ -10,8 +10,13 @@ export default class DeleteUserByIDService {
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
     ) {}
-    async execute(id: any, res: Response) {
+    async execute(id: any, req: Request, res: Response) {
          try {
+            if (req.user?.id !== id) {
+                return res.status(403).json({
+                    message: "Not allowed to interact with other accounts."
+                })
+            }
             this.logger.debug(`Service level: Finding user with ID ${id}`);
             const exists = await this.userRepository.findOne({where: {id: id}});
             if (!exists) {
