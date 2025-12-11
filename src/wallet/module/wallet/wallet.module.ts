@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../../../users/entities/user.entity';
-import { Wallet } from '../../entities/wallet.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';import { Wallet } from '../../entities/wallet.entity';
 import { WalletService } from '../../services/wallet/wallet.service';
 import GetAllWalletsService from '../../use-case/GetAllWallets';
 import CreateWalletService from '../../use-case/CreateWallet';
 import GetWalletByIDService from '../../use-case/GetWalletByID';
 import GetWalletByUserIDService from '../../use-case/GetWalletByUserID';
+import UpdateWalletByIDService from '../../use-case/UpdateWalletByID';
+import DeleteWalletByIDService from '../../use-case/DeleteWalletByID';
 
 @Module({
     imports: [
@@ -18,6 +18,8 @@ import GetWalletByUserIDService from '../../use-case/GetWalletByUserID';
         CreateWalletService,
         GetWalletByIDService,
         GetWalletByUserIDService,
+        UpdateWalletByIDService,
+        DeleteWalletByIDService
     ],
     exports: [WalletService],
     })

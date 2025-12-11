@@ -29,7 +29,7 @@ export default class UpdateUserByIDService {
                 this.logger.debug('Account found, patching data.');
                 const result = await this.userRepository.update({id: id}, patchData);
                 this.logger.debug('Success');
-                return  res.status(200).json({
+                return res.status(200).json({
                     message: 'User updated.',
                     result
                 });

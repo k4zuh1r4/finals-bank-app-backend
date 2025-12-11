@@ -7,7 +7,7 @@ export default class TokenUtils {
     constructor(
         private readonly configService: ConfigService
     ) {}
-    async signToken(id: string, role: string) {
+    async signToken(id: string, role: any) {
         const secret = this.configService.get<string>('JWT_SECRET');
         if (!secret) {
             throw new Error('JWT_SECRET is not defined');

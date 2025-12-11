@@ -1,5 +1,4 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
-import IWalletService from '../../interfaces/IWalletServices';
 import type { Request, Response } from 'express';
 import { WalletService } from '../../services/wallet/wallet.service';
 import { UserGuard } from '../../../users/guard/users/users.guard';
@@ -64,6 +63,7 @@ export class WalletController {
             throw error;
         }
     }
+    @UseGuards(AuthGuard)
     @Patch(':id')
     async updateWalletByID(@Param('id') id: any, @Body() updateData: any, @Req() req: Request, @Res() res: Response): Promise<any> {
         try {
@@ -72,6 +72,7 @@ export class WalletController {
             throw error;
         }
     }
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async deleteWalletByID(@Param('id') id: any, @Req() req: Request, @Res() res: Response): Promise<any> {
         try {

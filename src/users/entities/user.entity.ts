@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs'
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import * as crypto from 'crypto'
 @Entity("users")
 export class User {
@@ -29,7 +29,11 @@ export class User {
     passwordResetExpires: Date | null | undefined
     @Column({ default: true, select: false })
     active: boolean
-    
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
     @BeforeInsert()
     @BeforeUpdate()
     async hashPassword() {

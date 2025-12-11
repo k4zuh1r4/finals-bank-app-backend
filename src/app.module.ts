@@ -8,6 +8,7 @@ import { AuthModule } from './auth/modules/auth/auth.module';
 import { MailService } from './auth/services/mail/mail.service';
 import { WalletModule } from './wallet/module/wallet/wallet.module';
 import { WalletController } from './wallet/controller/wallet/wallet.controller';
+import { TransactionsModule } from './transactions/module/transactions/transactions.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { WalletController } from './wallet/controller/wallet/wallet.controller';
     DatabaseModule,
     AuthModule,
     WalletModule,
+    TransactionsModule,
   ],
   controllers: [UsersController, AuthController, WalletController],
   providers: [MailService],
