@@ -8,6 +8,9 @@ import GetWalletByIDService from '../../use-case/GetWalletByID';
 import GetWalletByUserIDService from '../../use-case/GetWalletByUserID';
 import UpdateWalletByIDService from '../../use-case/UpdateWalletByID';
 import DeleteWalletByIDService from '../../use-case/DeleteWalletByID';
+import DepositService from '../../use-case/Deposit';
+import { DepositDTO } from '../../dto/deposit.dto';
+import WithdrawService from '../../use-case/Withdraw';
 
 @Injectable()
 export class WalletService implements IWalletService {
@@ -18,7 +21,9 @@ export class WalletService implements IWalletService {
         private readonly getWalletByIDService: GetWalletByIDService,
         private readonly getWalletByUserIDService: GetWalletByUserIDService,
         private readonly updateWalletByIDService: UpdateWalletByIDService,
-        private readonly deleteWalletByIDService: DeleteWalletByIDService
+        private readonly deleteWalletByIDService: DeleteWalletByIDService,
+        private readonly depositService: DepositService,
+        private readonly withdrawService: WithdrawService
     ) {
     }
     async getAllWallets(req: Request, res: Response): Promise<any> {
@@ -63,10 +68,18 @@ export class WalletService implements IWalletService {
             throw error;
         }
     }
-    async depositByID(depositData: any, req: Request, res: Response): Promise<any> {
-        throw new Error('Method not implemented.');
+    async depositByID(depositData: DepositDTO, req: Request, res: Response): Promise<any> {
+        try {
+            return await this.depositService.execute(depositData, req, res);
+        } catch (error) {
+            throw error;
+        }
     }
     async withdrawByID(withdrawData: any, req: Request, res: Response): Promise<any> {
-        throw new Error('Method not implemented.');
+        try {
+            return await this.withdrawService.execute(withdrawData, req, res);
+        } catch (error) {
+            throw error;
+        }
     }
 }

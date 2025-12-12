@@ -7,6 +7,8 @@ import GetWalletByIDService from '../../use-case/GetWalletByID';
 import GetWalletByUserIDService from '../../use-case/GetWalletByUserID';
 import UpdateWalletByIDService from '../../use-case/UpdateWalletByID';
 import DeleteWalletByIDService from '../../use-case/DeleteWalletByID';
+import DepositService from '../../use-case/Deposit';
+import WithdrawService from '../../use-case/Withdraw';
 
 @Module({
     imports: [
@@ -19,7 +21,9 @@ import DeleteWalletByIDService from '../../use-case/DeleteWalletByID';
         GetWalletByIDService,
         GetWalletByUserIDService,
         UpdateWalletByIDService,
-        DeleteWalletByIDService
+        DeleteWalletByIDService,
+        DepositService,
+        WithdrawService
     ],
     exports: [WalletService],
     })

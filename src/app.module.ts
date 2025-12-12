@@ -9,6 +9,8 @@ import { MailService } from './auth/services/mail/mail.service';
 import { WalletModule } from './wallet/module/wallet/wallet.module';
 import { WalletController } from './wallet/controller/wallet/wallet.controller';
 import { TransactionsModule } from './transactions/module/transactions/transactions.module';
+import { TransactionsController } from './transactions/controller/transactions/transactions.controller';
+import { TransactionsService } from './transactions/services/transactions/transactions.service';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { TransactionsModule } from './transactions/module/transactions/transacti
     WalletModule,
     TransactionsModule,
   ],
-  controllers: [UsersController, AuthController, WalletController],
-  providers: [MailService],
+  controllers: [UsersController, AuthController, WalletController, TransactionsController],
+  providers: [MailService, TransactionsService],
 })
 export class AppModule {}

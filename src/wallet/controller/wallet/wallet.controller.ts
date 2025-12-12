@@ -4,6 +4,8 @@ import { WalletService } from '../../services/wallet/wallet.service';
 import { UserGuard } from '../../../users/guard/users/users.guard';
 import { AuthGuard } from '../../../auth/guard/auth/auth.guard';
 import { WalletDTO } from '../../dto/wallet.dto';
+import { DepositDTO } from '../../dto/deposit.dto';
+import { WithdrawDTO } from '../../dto/withdraw.dto';
 
 @Controller('wallet')
 export class WalletController {
@@ -29,16 +31,18 @@ export class WalletController {
             throw error;
         }
     }
-    @Post('deposit')
-    async depositByID(@Body() depositData:any, req: Request, res: Response): Promise<any> {
+    @UseGuards(AuthGuard)
+    @Patch('deposit')
+    async depositByID(@Body() depositData: DepositDTO, @Req() req: Request, @Res() res: Response): Promise<any> {
         try {
             return await this.walletService.depositByID(depositData, req, res);
         } catch (error) {
             throw error;
         }
     }
+    @UseGuards(AuthGuard)
     @Post('withdraw')
-    async withdrawByID(withdrawData: any, req: Request, res: Response): Promise<any> {
+    async withdrawByID(@Body() withdrawData: WithdrawDTO, @Req() req: Request, @Res() res: Response): Promise<any> {
         try {
             return await this.walletService.withdrawByID(withdrawData, req, res);
         } catch (error) {
