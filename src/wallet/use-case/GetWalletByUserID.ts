@@ -14,7 +14,7 @@ export default class GetWalletByUserIDService {
         try {
             this.logger.debug(`Finding wallet under current user.`);
             const user = req.user?.id;
-            const wallets = await this.walletRepository.findOne({
+            const wallets = await this.walletRepository.find({
                 where:
                 {
                     userID: user,

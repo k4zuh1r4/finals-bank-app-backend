@@ -31,6 +31,7 @@ export class WalletController {
             throw error;
         }
     }
+    @UsePipes(new ValidationPipe({forbidNonWhitelisted: true, transform: true}))
     @UseGuards(AuthGuard)
     @Patch('deposit')
     async depositByID(@Body() depositData: DepositDTO, @Req() req: Request, @Res() res: Response): Promise<any> {
@@ -40,6 +41,7 @@ export class WalletController {
             throw error;
         }
     }
+    @UsePipes(new ValidationPipe({forbidNonWhitelisted: true, transform: true}))
     @UseGuards(AuthGuard)
     @Post('withdraw')
     async withdrawByID(@Body() withdrawData: WithdrawDTO, @Req() req: Request, @Res() res: Response): Promise<any> {

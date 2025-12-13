@@ -24,6 +24,6 @@ import { TransactionsService } from './transactions/services/transactions/transa
     TransactionsModule,
   ],
   controllers: [UsersController, AuthController, WalletController, TransactionsController],
-  providers: [MailService, TransactionsService],
+  providers: [MailService],
 })
 export class AppModule {}
