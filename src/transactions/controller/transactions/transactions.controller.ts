@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import TransactionService from '../../interface/ITransactionService';
 import type { Request, Response } from 'express';
 import { TransactionDTO } from '../../dto/transaction.dto';
@@ -21,6 +21,7 @@ export class TransactionsController {
             throw error;
         }
     }
+    @UsePipes(new ValidationPipe({forbidNonWhitelisted: true, transform: true}))
     @UseGuards(AuthGuard)
     @Post()
     async createTransaction(@Body() transactionData: TransactionDTO, @Req() req: Request, @Res() res: Response) {
