@@ -97,7 +97,10 @@ Ngoài ra sẽ có các thành phần khác tham gia vào:
 *Ví dụ khi đăng nhập thì `Controller` chỉ nhận dữ liệu theo một mẫu DTO bao gồm đúng 2 biến là `username` và `password` để các lớp dưới biết được là 2 biến này được truyền xuống thì mới có dữ liệu để xác thực với database.*
 
 
-***Sơ đồ ERD***:![ERD-Example---ATM-_-Visual-Paradigm-Online---Brave-12_20_2025-9_07_09-PM.png](jb-image:img_1766239829770_5c20620c7062c8)
+***Sơ đồ ERD***:
+
+<img width="1287" height="566" alt="ERD Example - ATM _ Visual Paradigm Online - Brave 12_20_2025 9_07_09 PM" src="https://github.com/user-attachments/assets/f38e7ae2-eac1-4dc4-94ce-9910f6eddaf7" />
+
 
 ## Testing - kiểm thử:
 Mặc định là sử dụng localhost để chạy backend trên port 3000 (`http://localhost:3000`), nếu có chỉnh sửa thì đổi đường dẫn route theo.
